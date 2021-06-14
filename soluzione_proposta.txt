@@ -1,0 +1,17 @@
+L'azienda manufatturiera SalutePerTutti si dedica 
+alla distribuzione di prodotti medici 
+per la prevenzione e la cura delle malattie.
+
+I dipartimenti principali sono
+- Ortopedia;
+- Cosmetica;
+- Ottica.
+Ciascuno dipartimento ha il proprio catalogo di prototipi
+realizzati con la stampante 3d appena acquistata.
+
+DATABASE:
+Il database, denominato "database_prototipi",
+ha una tabella "prototipi" con tre colonne:
+- nome
+- descrizione
+- dipartimento

@@ -15,7 +15,6 @@ class Prototipo():
         self.nome = nome
         self.descrizione = descrizione
 
-
     def stampa_dettagli(self):
         print('Nome prototipo: ', self.nome, '\nDescrizione: ', self.descrizione)
 
@@ -30,20 +29,16 @@ class Dipartimento():
             self.cursore.execute("insert into prototipi values(?, ?, ?)", 
                 (prototipo.nome, prototipo.descrizione, self.nome))
 
-
-    # OGNI DIPARTIMENTO HA LA FACOLTA' DI ELIMINARE SOLO I PROTOTIPI DEL PROPRIO CATALOGO
     def elimina(self): # OK
         print('Dipartimento di', self.nome)
         with conn:
             self.cursore.execute("SELECT oid, * FROM prototipi WHERE dipartimento = ?", (self.nome, ))
             for p in self.cursore.fetchall():
-                print(p[0], p[2])
+                print('ID', p[0], '--->', p[2])
             p_id = input('Quale prototipo vuoi eliminare? Prototipo numero: ')
             self.cursore.execute("delete from prototipi where oid = ?", (p_id,))
             print('Prototipo eliminato!')
 
-
-    # OGNI DIPARTIMENTO HA LA FACOLTA' DI MODIFICARE LA DESCRIZIONE DEI PROTOTIPI DEL PROPRIO CATALOGO
     def modifica_descrizione(self):
         print('Dipartimento di', self.nome)
         with conn:
@@ -61,12 +56,10 @@ class Dipartimento():
             for p in self.cursore.fetchall():
                 print('ID', p[0], p[2])
 
-
     def ricerca(self, nome_prototipo):
         with conn:
             self.cursore.execute("SELECT * FROM prototipi WHERE nome = ?", (nome_prototipo, ))
             print(self.cursore.fetchall())
-
 
     def stampa_catalogo(self): # OK
         with conn:
@@ -99,7 +92,7 @@ d1 = Dipartimento('cosmetica', c)
 d2 = Dipartimento('ortopedia', c)
 d3 = Dipartimento('ottica', c)
 
-# INSERIMENTO PROTOTIPI IN DATABASE
+# # INSERIMENTO PROTOTIPI IN DATABASE
 d1.inserisci(p1)
 d2.inserisci(p2)
 d3.inserisci(p3)
@@ -107,16 +100,16 @@ d1.inserisci(p4)
 d2.inserisci(p5)
 d3.inserisci(p6)
 
-# ELIMINAZIONE PROTOTIPO
-d3.elimina()
+# # ELIMINAZIONE PROTOTIPO
+d2.elimina()
 
-# MODIFICA DESCRIZIONE DI UN PROTOTIPO
+# # MODIFICA DESCRIZIONE DI UN PROTOTIPO
 d3.modifica_descrizione()
 
-# RICERCA PROTOTIPO
+# # RICERCA PROTOTIPO
 d1.ricerca('eyeliner')
 
-# STAMPA CATALOGHI
+# # STAMPA CATALOGHI
 d3.stampa_catalogo()
 
 conn.close()

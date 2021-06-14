@@ -1,6 +1,5 @@
-L'azienda manufatturiera SalutePerTutti si dedica 
-alla distribuzione di prodotti medici 
-per la prevenzione e la cura delle malattie.
+L'azienda manufatturiera SalutePerTutti si dedica alla distribuzione
+di prodotti medici per la prevenzione e la cura delle malattie.
 
 I dipartimenti principali sono
 - Ortopedia;
@@ -9,9 +8,24 @@ I dipartimenti principali sono
 Ciascuno dipartimento ha il proprio catalogo di prototipi
 realizzati con la stampante 3d appena acquistata.
 
-DATABASE:
-Il database, denominato "database_prototipi",
-ha una tabella "prototipi" con tre colonne:
-- nome
-- descrizione
-- dipartimento
+main.py:
+All'interno di main.py vi sono due classi, Prototipo
+e Dipartimento. E' stato fatta questa scelta al fine di 
+ottenere la massima generalizzazione: infatti i prototipi che l'azienda
+produce possono cambiare nel corso nel tempo in termini di
+quantità, qualità, modalità di distribuzione etc, 
+così come i suoi dipartimenti possono essere soppressi o creati ex novo.
+
+main_sqlite3.py:
+Qui il codice precedente è stato implementato con la persistenza dei dati,
+utilizzando SQLite3.
+Il database, denominato "database_prototipi", ha una tabella, "prototipi",
+la quale ha tre colonne:
+- nome;
+- descrizione;
+- dipartimento.
+Ciascun dipartimento ha la facoltà di inserire il prototipo creato
+all'interno della tabella e vederne la lista completa. Tuttavia può 
+modificare ed eliminare solo quelli da esso prodotti, non già quelli
+degli altri dipartimenti. Infine può ricercare un prototipo inserendo 
+il nome del modello, per esempio "plantare". 
